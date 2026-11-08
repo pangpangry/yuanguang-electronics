@@ -28,6 +28,11 @@ def robots():
     return send_from_directory(PUBLIC_DIR, "robots.txt", mimetype="text/plain")
 
 
+@app.get("/sitemap.xml")
+def sitemap():
+    return send_from_directory(PUBLIC_DIR, "sitemap.xml", mimetype="application/xml")
+
+
 @app.errorhandler(404)
 def not_found(_error):
     return render_template("404.html"), 404
