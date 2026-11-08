@@ -65,3 +65,36 @@ footer .brand-logo{width:30px;height:30px}
 .measure{flex-direction:column;align-items:flex-start;gap:2px}
 .measure b{font:600 46px/1 "Barlow Condensed",sans-serif}
 .measure span{margin:0;font-size:12px;letter-spacing:.08em;color:#3c413b}
+/* ---------- single service card ---------- */
+.service-list.single{grid-template-columns:1fr}
+.service-card.wide{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(22px,3.6vw,56px);align-items:center;min-height:0;border-right:0;
+  padding:clamp(24px,3.2vw,42px)}
+.service-card.wide .service-copy{display:flex;flex-direction:column;align-items:flex-start}
+.service-card.wide .service-copy .number{margin-bottom:18px}
+.service-card.wide h3{font-size:clamp(26px,3vw,36px);margin:0 0 12px}
+.service-card.wide p{max-width:430px;margin:0 0 24px}
+.service-card.wide a{margin-top:0}
+.service-shot{margin:0;overflow:hidden;background:#fff;align-self:stretch}
+.service-shot img{display:block;width:100%;height:100%;aspect-ratio:1/1;object-fit:cover}
+
+@media(max-width:760px){
+  .service-card.wide{grid-template-columns:1fr;padding:24px 0}
+  .service-shot{order:-1;margin-bottom:22px}
+}
+/* keep the single service card compact */
+.service-card.wide{padding:clamp(22px,2.8vw,38px)}
+.service-shot{max-width:min(400px,34vw);width:100%;justify-self:end;align-self:center}
+.service-shot img{aspect-ratio:1/1;height:auto}
+.service-card.wide .service-copy{gap:0}
+.service-card.wide .service-copy .number{margin-bottom:14px}
+.service-card.wide h3{margin:0 0 10px}
+.service-card.wide p{margin:0 0 20px;font-size:14px;line-height:1.8}
+
+@media(max-width:760px){
+  .service-shot{max-width:100%;justify-self:stretch}
+}
+/* services: a touch tighter now that there is one card */
+.services{padding:96px clamp(22px,6vw,94px) 88px}
+.service-card.wide h3{font-size:clamp(28px,3.2vw,40px);letter-spacing:-.01em}
+.service-card.wide p{max-width:460px}
