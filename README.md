@@ -1,8 +1,35 @@
 # 圆光电子官网
 
-一个以 Flask 构建的单页公司官网。
+单页公司官网。`public/` 就是可直接部署的静态站点，Flask 只负责本地预览和可选的服务端托管。
 
-## 本地运行
+## 目录
+
+```
+public/                   ← 部署产物：整个目录上传即可
+  index.html              首页
+  404.html                404 页（Cloudflare Pages / OSS 自动生效）
+  robots.txt
+  static/style.css
+  static/favicon.svg
+app.py                    ← 可选：本地预览（含 /health、/robots.txt、404）
+render.yaml               ← Render 部署配置
+requirements.txt
+.python-version
+```
+
+页面里的资源路径是 `/static/...`，所以 `public/` 必须部署在域名根目录（不要放在子路径下）。
+
+## 本地预览
+
+纯静态（不需要 Python 依赖）：
+
+```powershell
+python -m http.server 4173 --directory public
+```
+
+→ http://127.0.0.1:4173
+
+走 Flask（能顺带验证 `/health`、`/robots.txt`、404 行为）：
 
 ```powershell
 py -m venv .venv
@@ -11,28 +38,22 @@ pip install -r requirements.txt
 python app.py
 ```
 
-打开 `http://127.0.0.1:8000` 即可预览。
+→ http://127.0.0.1:8000
 
 ## 部署
 
-本项目已包含 `render.yaml`，可以部署到 Render；也可部署到 Railway 或任意 Linux 服务器。
+| 平台 | 做法 | 备案 |
+|---|---|---|
+| Cloudflare Pages / Netlify | 直接上传 `public/`，不用构建命令 | 不需要 |
+| 阿里云 OSS / 腾讯云 COS | 静态网站托管，把 `public/` 内容传到 Bucket 根目录 | 绑定自定义域名需备案 |
+| Render | 按 `render.yaml` 新建 Blueprint，启动命令已绑 `$PORT` | 不需要 |
+| 任意 Linux 服务器 | `gunicorn app:app --bind 0.0.0.0:$PORT` | 需备案 |
 
-生产启动命令：
+注意：OSS / COS 用**默认域名**访问 HTML 会被强制下载而不是展示，必须绑定自己的域名。
 
-```text
-gunicorn app:app
-```
+## 上线前还需要补
 
-在托管平台中设置：
-
-- Build command: `pip install -r requirements.txt`
-- Start command: `gunicorn app:app`
-
-## Render 快速发布
-
-1. 把本项目上传到一个 GitHub 仓库。
-2. 在 Render 新建 Blueprint，并选择该仓库。
-3. Render 会读取 `render.yaml`，完成安装、启动与健康检查。
-4. 发布完成后，可在 Render 的 Custom Domains 中绑定自己的域名。
-
-上线前建议补充公司地址、企业邮箱、营业资质和真实产品图片。若面向中国大陆用户提供经营性互联网信息服务，请根据所在地的要求办理相关备案。
+- **域名**：拿到后补 `canonical`、`og:url`、`sitemap.xml`（现在故意留空，避免写死错误地址）
+- **ICP 备案号**：用大陆节点时，页脚需要挂备案号
+- **素材**：真实产品图、企业邮箱、微信二维码
+- **字体**：目前走 Google Fonts（`fonts.googleapis.com` 在国内不可用），建议改自托管或系统字体
