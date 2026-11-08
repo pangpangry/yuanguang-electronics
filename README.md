@@ -53,7 +53,7 @@ python app.py
 
 ## 上线前还需要补
 
-- ~~域名~~：已确定为 `https://yuanguang.com`（canonical、`og:url`、`og:image`、`sitemap.xml` 均已指向该域名。**换域名时全站只改这几处**：`public/index.html` 头部的 5 个绝对 URL、`public/sitemap.xml`、`public/robots.txt`）
+- ~~域名~~：已确定为 `https://yuanguang-r.com`（canonical、`og:url`、`og:image`、`sitemap.xml` 均已指向该域名。**换域名时全站只改这几处**：`public/index.html` 头部的 5 个绝对 URL、`public/sitemap.xml`、`public/robots.txt`）
 - **ICP 备案号**：用大陆节点时，页脚需要挂备案号；Cloudflare Pages 不需要备案
 - **素材**：真实产品图、企业邮箱、微信二维码
 - **字体**：目前走 Google Fonts（`fonts.googleapis.com` 在国内不可用），建议改自托管或系统字体

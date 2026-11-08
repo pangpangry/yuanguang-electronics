@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yuanguang.com/sitemap.xml
+Sitemap: https://yuanguang-r.com/sitemap.xml
