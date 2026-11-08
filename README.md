@@ -9,8 +9,10 @@ public/                   ← 部署产物：整个目录上传即可
   index.html              首页
   404.html                404 页（Cloudflare Pages / OSS 自动生效）
   robots.txt
+  sitemap.xml
   static/style.css
-  static/favicon.svg
+  static/og-image.png     分享卡
+  static/img/             品牌 logo、产品实拍、微信二维码（400w / 800w 两档）
 app.py                    ← 可选：本地预览（含 /health、/robots.txt、404）
 render.yaml               ← Render 部署配置
 requirements.txt
@@ -18,6 +20,16 @@ requirements.txt
 ```
 
 页面里的资源路径是 `/static/...`，所以 `public/` 必须部署在域名根目录（不要放在子路径下）。
+
+## 图片素材
+
+`static/img/` 里的文件由 `.dev/build_assets.py` 生成（白底转透明、裁切、压缩、输出两档尺寸），不要手工替换——改脚本重跑即可：
+
+```powershell
+python .dev\build_assets.py
+```
+
+原始图在 `.dev\raw\`（微信导出文件名不可读，脚本里按 `img1..img9` 对应）。分享卡由 `.dev\make_og.py` 生成。
 
 ## 本地预览
 

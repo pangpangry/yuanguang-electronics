@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="圆光电子">
-  <rect width="32" height="32" rx="4" fill="#f4f2ec"/>
-  <g fill="#111416" transform="translate(16 16) skewX(-10) translate(-16 -16)">
-    <rect x="8" y="9" width="3.6" height="14"/>
-    <rect x="14.2" y="9" width="3.6" height="14"/>
-    <rect x="20.4" y="9" width="3.6" height="14"/>
-  </g>
-</svg>
